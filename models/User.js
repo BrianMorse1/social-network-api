@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//created user schema which is the definition of what the user table will look like in the DB. different from user model.
 const userSchema = new mongoose.Schema({
     username: {
         type: String, 
@@ -22,7 +23,21 @@ const userSchema = new mongoose.Schema({
     friends: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'DON"T FORGET TO FINISH ME'
+            ref: 'user'
         }
-    ]
+    ]    
+},
+{
+    toJSON: {
+        virtuals: true,
+    }
 })
+
+userSchema.virtual('friendCount').get(
+    function() {
+        return this.friends.length;
+        }
+);
+
+const User = mongoose.model('user', userSchema);
+module.exports = User; 
