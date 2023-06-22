@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
-//require reactions schema
+const reactionSchema = require('./Reaction.js');
 
 
-//created user schema 
+//created thought schema 
 const thoughtSchema = new mongoose.Schema({
     thoughtText: {
         type: String,  
@@ -22,10 +22,9 @@ const thoughtSchema = new mongoose.Schema({
         type: String, 
         require: true,
     },
-        
     
     reactions: [
-       //reactions schema goes right here
+       reactionSchema
     ]    
 },
 {
@@ -41,5 +40,5 @@ thoughtSchema.virtual('friendCount').get(
         }
 );
 
-const User = mongoose.model('user', userSchema);
-module.exports = User; 
+const Thought = mongoose.model('thought', thoughtSchema);
+module.exports = Thought; 
