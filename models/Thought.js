@@ -3,7 +3,7 @@ const moment = require('moment');
 //require reactions schema
 
 
-//created user schema which is the definition of what the user table will look like in the DB. different from user model.
+//created user schema 
 const thoughtSchema = new mongoose.Schema({
     thoughtText: {
         type: String,  
