@@ -5,6 +5,12 @@ const reactionSchema = require('./Reaction.js');
 
 //created thought schema 
 const thoughtSchema = new mongoose.Schema({
+    thoughtID: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    
     thoughtText: {
         type: String,  
         required: true, 
