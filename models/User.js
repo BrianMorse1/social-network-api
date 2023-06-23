@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//created user schema which is the definition of what the user table will look like in the DB. different from user model.
+//created user schema which is the definition of what the user table will look like in the DB.
 const userSchema = new mongoose.Schema({
     username: {
         type: String, 
@@ -17,13 +17,13 @@ const userSchema = new mongoose.Schema({
     thoughts: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'DON"T FORGET TO FINISH ME'
+            ref: 'Thought'
         }
     ],
     friends: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'user'
+            ref: 'User'
         }
     ]    
 },
@@ -33,6 +33,7 @@ const userSchema = new mongoose.Schema({
     }
 })
 
+//virtual for obtaining length of friends array for user
 userSchema.virtual('friendCount').get(
     function() {
         return this.friends.length;
