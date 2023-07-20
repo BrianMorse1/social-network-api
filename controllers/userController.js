@@ -45,6 +45,9 @@ module.exports = {
     res.status(500).jseon(err);
   }
 },
+}
+
+
 // //update user
 //     async updateUser(req, res) {
 //         try {

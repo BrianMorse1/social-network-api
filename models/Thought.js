@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
+const {Schema} = mongoose;
 const reactionSchema = require('./Reaction.js');
 
 
 //created thought schema 
-const thoughtSchema = new mongoose.Schema({
+const thoughtSchema = new Schema({
     thoughtID: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        default: () => new mongoose.Types.ObjectId(),
         required: true,
         unique: true,
     },
@@ -19,10 +21,7 @@ const thoughtSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now,
-        get: function(){
-            return moment(this.createdAt).format('DD/MM/YYYY')
-        }       
+        default: Date.now,     
     },
     username: {
         type: String, 
@@ -40,11 +39,11 @@ const thoughtSchema = new mongoose.Schema({
     }
 })
 
-thoughtSchema.virtual('friendCount').get(
-    function() {
-        return this.friends.length;
-        }
-);
+// thoughtSchema.virtual('friendCount').get(
+//     function() {
+//         return this.friends.length;
+//         }
+// );
 
 const Thought = mongoose.model('thought', thoughtSchema);
 module.exports = Thought; 
