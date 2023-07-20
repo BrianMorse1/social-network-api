@@ -3,7 +3,7 @@ const router = require('express').Router();
 
 //returns all users
 router.get('/all', (req, res) => {
-    User.findAll()
+    User.find({})
     .then(users => res.json(users))
 });
 
@@ -27,3 +27,5 @@ router.delete('/:username', async (req, res) =>{
     res.status(404).json(err);
 }
 });
+
+module.exports = router;

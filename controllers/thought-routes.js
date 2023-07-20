@@ -2,7 +2,7 @@ const { Thought } = require('../models');
 const router = require('express').Router();
 
 // get all thoughts
-router.get("/all", (req, res) => {
+router.get("/all", (_req, res) => {
     Thought.findAll()
     .then(results => {
         res.json(results);
@@ -59,4 +59,4 @@ router.put("/:id", async (req, res) => {
 });
    
 
-         
+module.exports = router;

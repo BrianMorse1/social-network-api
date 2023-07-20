@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         unique: true,
         required: true,
-        match: /^(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+        match: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
     },
     thoughts: [
         {
