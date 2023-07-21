@@ -89,7 +89,7 @@ module.exports = {
     try {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtID },
-        { $pull: { reactions: { reacionID: req.params.reactionID} } },
+        { $pull: { reactions: { reactionID: req.params.reactionID} } },
         { runValidators: true, new: true }
       )
 
@@ -97,7 +97,7 @@ module.exports = {
         return res.status(404).json({ message: 'No thought with this id!' });
       }
 
-      res.json(video);
+      res.json(thought);
     } catch (err) {
       res.status(500).json(err);
     }
