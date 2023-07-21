@@ -87,8 +87,8 @@ async addFriend(req, res) {
 async removeFriend(req, res) {
   try {
     const user = await User.findOneAndUpdate(
-      { username: req.params.thoughtID },
-      { $pull: { friends: { friends: req.params.username} } },
+      { username: req.params.username },
+      { $pull: { friends: req.body.username } },
       { runValidators: true, new: true }
     )
 
@@ -96,7 +96,7 @@ async removeFriend(req, res) {
       return res.status(404).json({ message: 'No user with this username!' });
     }
 
-    res.json(thought);
+    res.json(user);
   } catch (err) {
     res.status(500).json(err);
   }
