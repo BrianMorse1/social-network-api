@@ -65,6 +65,43 @@ async updateUser(req, res) {
     res.status(500).json(err);
   }
 },
+// Add a friend
+async addFriend(req, res) {
+  try {
+    const user = await User.findOneAndUpdate(
+      { username: req.params.username },
+      { $addToSet: { friends: req.body.username } },
+      { runValidators: true, new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user with this username!' });
+    }
+
+    res.json(user);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+},
+// Remove friend
+async removeFriend(req, res) {
+  try {
+    const user = await User.findOneAndUpdate(
+      { username: req.params.thoughtID },
+      { $pull: { friends: { friends: req.params.username} } },
+      { runValidators: true, new: true }
+    )
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user with this username!' });
+    }
+
+    res.json(thought);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+},
+
 }
 
 
