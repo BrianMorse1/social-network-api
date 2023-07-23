@@ -11,7 +11,7 @@ module.exports = {
   },
   async getSingleUser(req, res) {
     try {
-      const user = await User.findOne({ _id: req.params.username})
+      const user = await User.findOne({ username: req.params.username})
         .select('-__v');
 
       if (!user) {
